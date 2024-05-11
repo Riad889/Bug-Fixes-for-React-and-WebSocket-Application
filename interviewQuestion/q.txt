@@ -1,0 +1,69 @@
+// Initial response from api
+
+
+[
+   {
+       key: 'category',
+       value: 'Clothing'
+   },
+   {
+       key: 'category',
+       value: 'Shoes'
+   },
+   {
+       key: 'category',
+       value: 'Accessories'
+   },
+   {
+       key: 'category',
+       value: 'Shirt',
+       parent: 'Clothing'
+   },
+   {
+       key: 'category',
+       value: 'Pants',
+       parent: 'Clothing'
+   },
+   {
+       key: 'category',
+       value: 'Sports',
+       parent: 'Shoes'
+   },
+   {
+       key: 'category',
+       value: 'Sneakers',
+       parent: 'Shoes'
+   },
+   {
+       key: 'category',
+       value: 'Watch',
+       parent: 'Accessories'
+   }
+]
+
+
+// Expected format
+
+
+[
+   {
+       category: 'Clothing',
+       subCategories: [
+           'Shirt',
+           'Pants'
+       ]
+   },
+   {
+       category: 'Shoes',
+       subCategories: [
+           'Sports',
+           'Sneakers'
+       ]
+   },
+   {
+       category: 'Accessories',
+       subCategories: [
+           'Watch'
+       ]
+   }
+]

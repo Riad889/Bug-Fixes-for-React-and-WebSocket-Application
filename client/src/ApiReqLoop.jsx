@@ -22,15 +22,25 @@ export default function ApiReqLoop() {
 
   socket.on('connect', onConnect);
   socket.on('disconnect', (event) => console.log('disconnected ' + event));
-  socket.on('message', (message) => {
-    setMessage('')
-    setMessages(prev => [...prev, message])
-  })
+ 
 
   useEffect(() => {
     fetch('http://localhost:5000/user').then(res => res.json()).then(data => setUser(data))
 
-  }, [user])
+  }, []) //remove the dependency of user
+
+
+  // Runs when a socket event is recieved from the server
+  useEffect(()=>{
+    socket.on('message', (message) => {
+      setMessage('');
+      console.log("Receive from socket : ",message)
+      setMessages(prev => [...prev, message])
+    })
+    return (()=>{
+      socket.off();
+    })
+  },[socket])  //add socket dependency to track the change
 
   return (
     <div className='flex flex-col gap-20'>
